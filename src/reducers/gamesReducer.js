@@ -15,4 +15,6 @@ const gamesReducer = (state = initState, action) => {
     }
 };
 
+// action - dispatch sends the action to the reducer to modify the data
+
 export default gamesReducer;
