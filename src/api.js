@@ -13,4 +13,5 @@ const date = () => {
 }
 
 export const popularGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().todayLastYear},${date().today}&ordering=-rating&page_size=10`;
-export const upcomingGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().today},${date().todayNextYear}&ordering=-added&page_size=10`;
+export const upcomingGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().today},${date().todayNextYear}&ordering=added&page_size=10`;
+export const newGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().todayLastYear},${date().today}&ordering=-released&page_size=10`;
