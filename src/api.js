@@ -3,7 +3,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 const date = () => {
     const day = String(new Date().getDate()).padStart(2, '0');
-    const month = String(new Date().getMonth()).padStart(2, '0')
+    const month = String(new Date().getMonth() + 1).padStart(2, '0')
     const year = new Date().getFullYear();
     return {
         todayLastYear: `${year - 1}-${month}-${day}`,
@@ -12,5 +12,5 @@ const date = () => {
     };
 }
 
-export const popularGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().todayLastYear},
-${date().today},&ordering=-rating&page_size=10`;
+export const popularGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().todayLastYear},${date().today}&ordering=-rating&page_size=10`;
+export const upcomingGamesUrl = `${base_url}/games?key=${apiKey}?dates=${date().today},${date().todayNextYear}&ordering=-added&page_size=10`;
