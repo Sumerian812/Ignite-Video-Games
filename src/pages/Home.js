@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
 // Components
 import Game from "../components/Game";
+import GameDetails from "../components/GameDetails";
 // Styles & Motion
 import styled from 'styled-components';
 import { motion } from "framer-motion";
-import { popularGamesUrl } from "../api";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -16,8 +16,10 @@ const Home = () => {
     }, [dispatch]);
 
     const { popularGames, newGamesThisWeek, newGamesNextWeek } = useSelector(state => state.games);
+
     return (
         <GameList>
+            <GameDetails />
             <h2>Popular Games</h2>
             <Games>
                 {popularGames.map(game => (
@@ -56,6 +58,7 @@ const Home = () => {
                 ))}
             </Games>
         </GameList>
+
     );
 }
 
