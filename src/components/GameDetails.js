@@ -4,47 +4,62 @@ import { useSelector } from "react-redux";
 // styles
 import styled from 'styled-components';
 import { motion } from "framer-motion";
+// Route
+import { useHistory } from "react-router-dom";
 
 const GameDetails = () => {
-    const { game, screenshots } = useSelector(state => state.details);
-
+    const { game, screenshots, isLoading } = useSelector(state => state.details);
+    const history = useHistory();
+    const exitDetailsHandler = e => {
+        const element = e.target;
+        if (element.classList.contains("shadow")) {
+            document.body.style.overflow = "auto";
+            history.push("/");
+        }
+    }
     return (
-        <StyledGameCard>
-            <StyledGameDetails>
-                <StyledStats>
-                    <div className="rating">
-                        <h3>{game.name}</h3>
-                        <p>Rating: {game.rating}/{game.rating_top}</p>
-                    </div>
-                    <StyledInfo>
-                        <h3>Platforms</h3>
-                        <StyledPlatforms>
-                            {game.platforms.map(platform => (
-                                <h3 key={platform.platform.id}>{platform.platform.name}</h3>
-                            ))}
-                        </StyledPlatforms>
-                    </StyledInfo>
-                </StyledStats>
-                <StyledMedia>
-                    <img src={game.background_image} alt={game.name} />
-                </StyledMedia>
-                <StyledDescription>
-                    <p>{game.description_raw}</p>
-                </StyledDescription>
-                <div className="gallery">
-                    {screenshots.map(screenshot => {
-                        if (screenshot.id !== -1) {
-                            return <img src={screenshot.image} alt={screenshot.image} key={screenshot.id} />
-                        }
-
-                    })}
-                </div>
-            </StyledGameDetails>
-        </StyledGameCard>
+        <>
+            {!isLoading && (
+                <StyledCardShadow className="shadow" onClick={exitDetailsHandler}>
+                    <StyledGameDetails>
+                        <StyledStats>
+                            <div className="rating">
+                                <h3>{game.name}</h3>
+                                <p>Rating: {game.rating}/{game.rating_top}</p>
+                            </div>
+                            <StyledInfo>
+                                <h3>Platforms</h3>
+                                <StyledPlatforms>
+                                    {game.platforms?.map(platform => (
+                                        <h3 key={platform.platform.id}>{platform.platform.name}</h3>
+                                    ))}
+                                </StyledPlatforms>
+                            </StyledInfo>
+                        </StyledStats>
+                        <StyledMedia>
+                            <img src={game.background_image} alt={game.name} />
+                        </StyledMedia>
+                        <StyledDescription>
+                            <p>{game.description_raw}</p>
+                        </StyledDescription>
+                        <div className="gallery">
+                            {screenshots?.map(screenshot => {
+                                if (screenshot.id !== -1) {
+                                    return <img
+                                        src={screenshot.image}
+                                        alt={`${game.name}_screenshot_${screenshot.id}`}
+                                        key={screenshot.id}
+                                    />
+                                } 
+                            })}
+                        </div>
+                    </StyledGameDetails>
+                </StyledCardShadow>)}
+        </>
     );
 }
 
-const StyledGameCard = styled(motion.div)`
+const StyledCardShadow = styled(motion.div)`
     width: 100%;
     min-height: 100vh;
     overflow-y: scroll;
@@ -66,7 +81,7 @@ const StyledGameCard = styled(motion.div)`
 const StyledGameDetails = styled(motion.div)`
     width: 80%;
     border-radius: 1.5rem;
-    padding: 2rem 5rem;
+    padding: 2rem 5rem 3rem 5rem;
     background: white;
     position: absolute;
     left: 10%;

@@ -3,7 +3,8 @@ const initState = {
     popularGames: [],
     newGamesThisWeek: [],
     newGamesNextWeek: [],
-    searched: []
+    searched: [],
+    isLoading: true
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -13,7 +14,8 @@ const gamesReducer = (state = initState, action) => {
                 ...state,
                 popularGames: action.payload.popularGames,
                 newGamesThisWeek: action.payload.newGamesThisWeek,
-                newGamesNextWeek: action.payload.newGamesNextWeek
+                newGamesNextWeek: action.payload.newGamesNextWeek,
+                isLoading: false
             };
         default:
             return { ...state };

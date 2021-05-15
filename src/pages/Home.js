@@ -8,18 +8,27 @@ import GameDetails from "../components/GameDetails";
 // Styles & Motion
 import styled from 'styled-components';
 import { motion } from "framer-motion";
+// Router
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
+    const path = useLocation().pathname;
     const dispatch = useDispatch();
+    const {
+        popularGames,
+        newGamesThisWeek,
+        newGamesNextWeek,
+        gamesAreLoading
+    } = useSelector(state => state.games);
+    const { detailsAreLoading } = useSelector(state => state.details)
+
     useEffect(() => {
         dispatch(loadGames())
     }, [dispatch]);
 
-    const { popularGames, newGamesThisWeek, newGamesNextWeek } = useSelector(state => state.games);
-
     return (
         <GameList>
-            <GameDetails />
+            {!gamesAreLoading && !detailsAreLoading && path !== "/" && <GameDetails />}
             <h2>Popular Games</h2>
             <Games>
                 {popularGames.map(game => (
@@ -41,6 +50,7 @@ const Home = () => {
                         name={game.name}
                         released={game.released}
                         image={game.background_image}
+                        screenshots={game.short_screenshots}
                         key={game.id}
                     />
                 ))}
@@ -53,12 +63,12 @@ const Home = () => {
                         name={game.name}
                         released={game.released}
                         image={game.background_image}
+                        screenshots={game.short_screenshots}
                         key={game.id}
                     />
                 ))}
             </Games>
         </GameList>
-
     );
 }
 
