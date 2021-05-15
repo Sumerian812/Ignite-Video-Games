@@ -11,30 +11,33 @@ const GameDetails = () => {
     return (
         <StyledGameCard>
             <StyledGameDetails>
-                <div className="stats">
+                <StyledStats>
                     <div className="rating">
                         <h3>{game.name}</h3>
                         <p>Rating: {game.rating}/{game.rating_top}</p>
                     </div>
-                    <div className="info">
+                    <StyledInfo>
                         <h3>Platforms</h3>
-                        <div className="platforms">
+                        <StyledPlatforms>
                             {game.platforms.map(platform => (
                                 <h3 key={platform.platform.id}>{platform.platform.name}</h3>
                             ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="media">
+                        </StyledPlatforms>
+                    </StyledInfo>
+                </StyledStats>
+                <StyledMedia>
                     <img src={game.background_image} alt={game.name} />
-                </div>
-                <div className="description">
+                </StyledMedia>
+                <StyledDescription>
                     <p>{game.description_raw}</p>
-                </div>
+                </StyledDescription>
                 <div className="gallery">
-                    {screenshots.map(screenshot => (
-                        <img src={screenshot.image} alt={screenshot.image} key={screenshot.id} />
-                    ))}
+                    {screenshots.map(screenshot => {
+                        if (screenshot.id !== -1) {
+                            return <img src={screenshot.image} alt={screenshot.image} key={screenshot.id} />
+                        }
+
+                    })}
                 </div>
             </StyledGameDetails>
         </StyledGameCard>
@@ -63,16 +66,43 @@ const StyledGameCard = styled(motion.div)`
 const StyledGameDetails = styled(motion.div)`
     width: 80%;
     border-radius: 1.5rem;
-    padding: 2rem 10rem;
+    padding: 2rem 5rem;
     background: white;
     position: absolute;
     left: 10%;
     color: black;
     img {
         width: 100%;
-        height: 60vh;
-        object-fit: cover;
     }
+`;
+
+const StyledStats = styled(motion.div)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const StyledInfo = styled(motion.div)`
+    text-align: center;
+`;
+
+const StyledPlatforms = styled(motion.div)`
+    display: flex;
+    justify-content: space-evenly;
+    img {
+        margin-left: 3rem;
+    }
+`;
+
+const StyledMedia = styled(motion.div)`
+    margin-top: 5rem;
+    img {
+        width: 100%;
+    }
+`;
+
+const StyledDescription = styled(motion.div)`
+    margin: 5rem 0rem;
 `;
 
 export default GameDetails;
