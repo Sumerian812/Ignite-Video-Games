@@ -1,17 +1,17 @@
 import axios from "axios";
-import { popularGamesUrl, upcomingGamesUrl, newGamesUrl } from "../api";
+import { popularGamesUrl, newGamesThisWeekUrl, newGamesNextWeekUrl } from "../api";
 
 export const loadGames = () => async (dispatch) => {
     const popularGamesData = await axios.get(popularGamesUrl);
-    const upcomingGamesData = await axios.get(upcomingGamesUrl);
-    const newGamesData = await axios.get(newGamesUrl);
+    const newGamesThisWeekData = await axios.get(newGamesThisWeekUrl);
+    const newGamesNextWeekData = await axios.get(newGamesNextWeekUrl);
     
     dispatch({
         type: "FETCH_GAMES",
         payload: {
             popularGames: popularGamesData.data.results,
-            upcomingGames: upcomingGamesData.data.results,
-            newGames: newGamesData.data.results
+            newGamesThisWeek: newGamesThisWeekData.data.results,
+            newGamesNextWeek: newGamesNextWeekData.data.results
         }
     });
 };

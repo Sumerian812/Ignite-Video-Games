@@ -1,8 +1,8 @@
 
 const initState = {
     popularGames: [],
-    upcomingGames: [],
-    newGames: [],
+    newGamesThisWeek: [],
+    newGamesNextWeek: [],
     searched: []
 };
 
@@ -12,8 +12,8 @@ const gamesReducer = (state = initState, action) => {
             return {
                 ...state,
                 popularGames: action.payload.popularGames,
-                upcomingGames: action.payload.upcomingGames,
-                newGames: action.payload.newGames
+                newGamesThisWeek: action.payload.newGamesThisWeek,
+                newGamesNextWeek: action.payload.newGamesNextWeek
             };
         default:
             return { ...state };
