@@ -7,6 +7,7 @@ import Game from "../components/Game";
 // Styles & Motion
 import styled from 'styled-components';
 import { motion } from "framer-motion";
+import { popularGamesUrl } from "../api";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,6 @@ const Home = () => {
     }, [dispatch]);
 
     const { popularGames, newGamesThisWeek, newGamesNextWeek } = useSelector(state => state.games);
-
     return (
         <GameList>
             <h2>Popular Games</h2>
@@ -26,6 +26,7 @@ const Home = () => {
                         name={game.name}
                         released={game.released}
                         image={game.background_image}
+                        screenshots={game.short_screenshots}
                         key={game.id}
                     />
                 ))}
