@@ -55,6 +55,31 @@ const GameDetails = () => {
         }
     }
 
+    const getStarRating = () => {
+        const stars = [];
+        const rating = Math.floor(game.rating);
+        for (let i = 1; i <= 5; i += 1) {
+            if (i <= rating) {
+                stars.push(<img
+                    src={starFull}
+                    alt={`star_${i}`}
+                    key={i}
+                    title={game.rating}
+                    className="star"
+                />)
+            } else {
+                stars.push(<img
+                    src={starEmpty}
+                    alt={`star_${i}`}
+                    key={i}
+                    title={game.rating}
+                    className="star"
+                />)
+            }
+        }
+        return stars
+    }
+
     return (
         <>
             {!isLoading && (
@@ -63,7 +88,8 @@ const GameDetails = () => {
                         <StyledStats>
                             <div className="rating">
                                 <h3>{game.name}</h3>
-                                <p>Rating: {game.rating}/{game.rating_top}</p>
+                                <p>Rating: {game.rating}/5</p>
+                                {getStarRating()}
                             </div>
                             <StyledInfo>
                                 <h3>Platforms</h3>
@@ -140,6 +166,11 @@ const StyledStats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img.star {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline;
+    }
 `;
 
 const StyledInfo = styled(motion.div)`
