@@ -1,11 +1,20 @@
 import React from 'react';
 // Redux
 import { useSelector } from "react-redux";
-// styles
+// Styles
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 // Route
 import { useHistory } from "react-router-dom";
+// Utilities
+import { resizeImage } from "../utils";
+// Images
+import playstation from "../img/playstation.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
+import nintendo from "../img/nintendo.svg";
+import steam from "../img/steam.svg";
+import xbox from "../img/xbox.svg";
 
 const GameDetails = () => {
     const { game, screenshots, isLoading } = useSelector(state => state.details);
@@ -17,6 +26,33 @@ const GameDetails = () => {
             history.push("/");
         }
     }
+    const getPlatformIcon = platform => {
+        switch (platform) {
+            case "PlayStation 5":
+                return playstation;
+            case "PlayStation 4":
+                return playstation;
+            case "PlayStation 3":
+                return playstation;
+            case "Xbox Series S/X":
+                return xbox;
+            case "Xbox S":
+                return xbox;
+            case "Xbox 360":
+                return xbox;
+            case "Xbox One":
+                return xbox;
+            case "Nintendo Switch":
+                return nintendo;
+            case "PC":
+                return steam;
+            case "macOS":
+                return apple;
+            default:
+                return gamepad;
+        }
+    }
+
     return (
         <>
             {!isLoading && (
@@ -31,13 +67,17 @@ const GameDetails = () => {
                                 <h3>Platforms</h3>
                                 <StyledPlatforms>
                                     {game.platforms?.map(platform => (
-                                        <h3 key={platform.platform.id}>{platform.platform.name}</h3>
+                                        <img key={platform.platform.id}
+                                            src={getPlatformIcon(platform.platform.name)}
+                                            alt={`${platform.platform.name} icon`}
+                                            title={platform.platform.name}
+                                        />
                                     ))}
                                 </StyledPlatforms>
                             </StyledInfo>
                         </StyledStats>
                         <StyledMedia>
-                            <img src={game.background_image} alt={game.name} />
+                            <img src={resizeImage(game.background_image, 1280)} alt={game.name} />
                         </StyledMedia>
                         <StyledDescription>
                             <p>{game.description_raw}</p>
@@ -46,11 +86,12 @@ const GameDetails = () => {
                             {screenshots?.map(screenshot => {
                                 if (screenshot.id !== -1) {
                                     return <img
-                                        src={screenshot.image}
+                                        src={resizeImage(screenshot.image, 1280)}
                                         alt={`${game.name}_screenshot_${screenshot.id}`}
                                         key={screenshot.id}
                                     />
-                                } 
+                                }
+                                return "";
                             })}
                         </div>
                     </StyledGameDetails>
@@ -67,6 +108,7 @@ const StyledCardShadow = styled(motion.div)`
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 5;
     &::-webkit-scrollbar {
         width: 0.5rem;
     }
@@ -86,6 +128,7 @@ const StyledGameDetails = styled(motion.div)`
     position: absolute;
     left: 10%;
     color: black;
+    z-index: 10;
     img {
         width: 100%;
     }

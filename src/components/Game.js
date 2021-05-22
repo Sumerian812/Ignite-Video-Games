@@ -2,16 +2,17 @@ import React from 'react';
 // Redux
 import { useDispatch } from "react-redux";
 import { loadDetails } from "../actions/detailsAction";
-// styles
+// Styles
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 // Route
 import { Link } from "react-router-dom";
+// Utilities
+import { resizeImage } from "../utils";
 
 const Game = ({ id, name, released, image, screenshots }) => {
     const dispatch = useDispatch();
     const loadDetailsHandler = () => {
-        console.log(screenshots)
         dispatch(loadDetails(id, screenshots));
         document.body.style.overflow = "hidden";
     }
@@ -20,7 +21,7 @@ const Game = ({ id, name, released, image, screenshots }) => {
             <Link to={`/games/${id}`}>
                 <h3>{name}</h3>
                 <p>{released}</p>
-                <img src={image} alt={name} />
+                <img src={resizeImage(image, 1280)} alt={name} />
             </Link>
         </StyledGame>
     );
