@@ -15,6 +15,8 @@ import gamepad from "../img/gamepad.svg";
 import nintendo from "../img/nintendo.svg";
 import steam from "../img/steam.svg";
 import xbox from "../img/xbox.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetails = () => {
     const { game, screenshots, isLoading } = useSelector(state => state.details);
