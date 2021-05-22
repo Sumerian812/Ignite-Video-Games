@@ -9,7 +9,7 @@ import GameDetails from "../components/GameDetails";
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 // Router
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const Home = () => {
     const path = useLocation().pathname;
@@ -20,11 +20,13 @@ const Home = () => {
         newGamesNextWeek,
         gamesAreLoading
     } = useSelector(state => state.games);
-    const { detailsAreLoading } = useSelector(state => state.details)
+    const { detailsAreLoading } = useSelector(state => state.details);
+    const history = useHistory();
 
     useEffect(() => {
-        dispatch(loadGames())
-    }, [dispatch]);
+        dispatch(loadGames());
+        history.push("/");
+    }, [dispatch, history]);
 
     return (
         <GameList>
