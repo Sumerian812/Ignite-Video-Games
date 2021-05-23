@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 // Styles & Motion
 import styled from 'styled-components';
 import { motion } from "framer-motion";
+import { detailsAnimation } from "../animations";
 // Route
 import { useHistory } from "react-router-dom";
 // Utilities
@@ -84,7 +85,11 @@ const GameDetails = () => {
         <>
             {!isLoading && (
                 <StyledCardShadow className="shadow" onClick={exitDetailsHandler}>
-                    <StyledGameDetails>
+                    <StyledGameDetails
+                        variants={detailsAnimation}
+                        initial="hidden"
+                        animate="show"
+                    >
                         <StyledStats>
                             <div className="rating">
                                 <h3>{game.name}</h3>
