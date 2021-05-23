@@ -8,6 +8,7 @@ import GameDetails from "../components/GameDetails";
 // Styles & Motion
 import styled from 'styled-components';
 import { motion } from "framer-motion";
+import { fadeIn } from "../animations";
 // Router
 import { useLocation } from "react-router-dom";
 
@@ -28,7 +29,7 @@ const Home = () => {
     }, [dispatch]);
 
     return (
-        <GameList>
+        <GameList variants={fadeIn} initial="hidden" animate="show">
             {!gamesAreLoading && !detailsAreLoading && path !== "/" && (<GameDetails />)}
             {searchedGames.length !== 0 &&
                 (<div className="searchedGames">

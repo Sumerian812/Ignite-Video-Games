@@ -1,7 +1,7 @@
 import React from 'react';
 // Redux
 import { useSelector } from "react-redux";
-// Styles
+// Styles & Motion
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 // Route
@@ -109,7 +109,7 @@ const GameDetails = () => {
                                 resizeImage(game.background_image, 1280)
                                     ? resizeImage(game.background_image, 1280)
                                     : logo
-                            }   
+                            }
                                 alt={game.name} />
                         </StyledMedia>
                         <StyledDescription>

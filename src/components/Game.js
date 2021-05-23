@@ -5,6 +5,7 @@ import { loadDetails } from "../actions/detailsAction";
 // Styles
 import styled from 'styled-components';
 import { motion } from "framer-motion";
+import { popUp } from "../animations";
 // Route
 import { Link } from "react-router-dom";
 // Utilities
@@ -19,7 +20,13 @@ const Game = ({ id, name, released, image, screenshots }) => {
         document.body.style.overflow = "hidden";
     }
     return (
-        <StyledGame onClick={loadDetailsHandler}>
+        <StyledGame
+            onClick={loadDetailsHandler}
+            variants={popUp}
+            initial="hidden"
+            animate="show"
+            whileHover="whileHover"
+        >
             <Link to={`/games/${id}`}>
                 <h3>{name}</h3>
                 <p>{released}</p>
