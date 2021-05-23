@@ -1,4 +1,4 @@
-const initState = { game: {}, screenshots: {}, isLoading: true };
+const initState = { game: {}, screenshots: {}, movie: {}, isLoading: true };
 
 const detailsReducer = (state = initState, action) => {
     switch (action.type) {
@@ -7,6 +7,7 @@ const detailsReducer = (state = initState, action) => {
                 ...state,
                 game: action.payload.game,
                 screenshots: action.payload.screenshots,
+                movie: action.payload.movie,
                 isLoading: false
             };
         default:

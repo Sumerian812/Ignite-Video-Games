@@ -21,7 +21,7 @@ import starFull from "../img/star-full.png";
 import logo from "../img/logo.svg";
 
 const GameDetails = () => {
-    const { game, screenshots, isLoading } = useSelector(state => state.details);
+    const { game, screenshots, movie, isLoading } = useSelector(state => state.details);
     const history = useHistory();
     const exitDetailsHandler = e => {
         const element = e.target;
@@ -120,6 +120,14 @@ const GameDetails = () => {
                         <StyledDescription>
                             <p>{game.description_raw}</p>
                         </StyledDescription>
+                        {movie && movie.count > 0 && (
+                            <video controls width="100%">
+                                <source
+                                    src={movie.results[0].data?.max}
+                                    type="video/mp4"
+                                />
+                            </video>
+                        )}
                         <div className="gallery">
                             {screenshots?.map(screenshot => {
                                 if (screenshot.id !== -1) {

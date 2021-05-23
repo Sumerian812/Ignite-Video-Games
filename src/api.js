@@ -11,3 +11,6 @@ export const gameDetailsUrl = (id) => `${base_url}/games/${id}?key=${apiKey}`;
 
 // search game
 export const searchGamesUrl = (game_name) => `${base_url}/games?key=${apiKey}&search=${game_name}&page_size=10&ordering=-relevance`;
+
+// fetch movie
+export const movieUrl = (game_id) => `${base_url}/games/${game_id}/movies?key=${apiKey}`;
