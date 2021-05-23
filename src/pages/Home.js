@@ -13,6 +13,7 @@ import { useLocation, useHistory } from "react-router-dom";
 
 const Home = () => {
     const path = useLocation().pathname;
+    const history = useHistory();
     const dispatch = useDispatch();
     const {
         popularGames,
@@ -21,7 +22,6 @@ const Home = () => {
         gamesAreLoading
     } = useSelector(state => state.games);
     const { detailsAreLoading } = useSelector(state => state.details);
-    const history = useHistory();
 
     useEffect(() => {
         dispatch(loadGames());
