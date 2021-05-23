@@ -19,7 +19,8 @@ const Home = () => {
         popularGames,
         newGamesThisWeek,
         newGamesNextWeek,
-        gamesAreLoading
+        gamesAreLoading,
+        searchedGames
     } = useSelector(state => state.games);
     const { detailsAreLoading } = useSelector(state => state.details);
 
@@ -30,8 +31,24 @@ const Home = () => {
 
     return (
         <GameList>
-            {!gamesAreLoading && !detailsAreLoading && path !== "/" && <GameDetails />}
-            <h2>Popular Games</h2>
+            {!gamesAreLoading && !detailsAreLoading && path !== "/" && (<GameDetails />)}
+            {searchedGames.length !== 0 &&
+                (<div className="searchedGames">
+                    <h2>Search Results</h2>
+                    <Games>
+                        {searchedGames.map(game => (
+                            <Game
+                                id={game.id}
+                                name={game.name}
+                                released={game.released}
+                                image={game.background_image}
+                                screenshots={game.short_screenshots}
+                                key={game.id}
+                            />
+                        ))}
+                    </Games>
+                </div>)}
+            <h2>New and Trending</h2>
             <Games>
                 {popularGames.map(game => (
                     <Game

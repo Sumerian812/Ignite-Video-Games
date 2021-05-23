@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 // Utilities
 import { resizeImage } from "../utils";
+// default logo image
+import logo from "../img/logo.svg";
 
 const Game = ({ id, name, released, image, screenshots }) => {
     const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const Game = ({ id, name, released, image, screenshots }) => {
             <Link to={`/games/${id}`}>
                 <h3>{name}</h3>
                 <p>{released}</p>
-                <img src={resizeImage(image, 1280)} alt={name} />
+                <img src={resizeImage(image, 1280) ? resizeImage(image, 1280) : logo} alt={name} />
             </Link>
         </StyledGame>
     );

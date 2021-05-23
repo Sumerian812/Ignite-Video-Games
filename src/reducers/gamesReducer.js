@@ -3,7 +3,7 @@ const initState = {
     popularGames: [],
     newGamesThisWeek: [],
     newGamesNextWeek: [],
-    searched: [],
+    searchedGames: [],
     isLoading: true
 };
 
@@ -17,6 +17,16 @@ const gamesReducer = (state = initState, action) => {
                 newGamesNextWeek: action.payload.newGamesNextWeek,
                 isLoading: false
             };
+        case "SEARCH_GAMES":
+            return {
+                ...state,
+                searchedGames: action.payload.searchedGames
+            }
+        case "CLEAR_SEARCH":
+            return {
+                ...state,
+                searchedGames: []
+            }
         default:
             return { ...state };
     }

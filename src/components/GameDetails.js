@@ -17,6 +17,7 @@ import steam from "../img/steam.svg";
 import xbox from "../img/xbox.svg";
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
+import logo from "../img/logo.svg";
 
 const GameDetails = () => {
     const { game, screenshots, isLoading } = useSelector(state => state.details);
@@ -31,20 +32,19 @@ const GameDetails = () => {
     const getPlatformIcon = platform => {
         switch (platform) {
             case "PlayStation 5":
-                return playstation;
             case "PlayStation 4":
-                return playstation;
             case "PlayStation 3":
+            case "PlayStation 2":
+            case "PlayStation":
                 return playstation;
             case "Xbox Series S/X":
-                return xbox;
             case "Xbox S":
-                return xbox;
             case "Xbox 360":
-                return xbox;
             case "Xbox One":
+            case "Xbox":
                 return xbox;
             case "Nintendo Switch":
+            case "Nintendo":
                 return nintendo;
             case "PC":
                 return steam;
@@ -105,7 +105,12 @@ const GameDetails = () => {
                             </StyledInfo>
                         </StyledStats>
                         <StyledMedia>
-                            <img src={resizeImage(game.background_image, 1280)} alt={game.name} />
+                            <img src={
+                                resizeImage(game.background_image, 1280)
+                                    ? resizeImage(game.background_image, 1280)
+                                    : logo
+                            }   
+                                alt={game.name} />
                         </StyledMedia>
                         <StyledDescription>
                             <p>{game.description_raw}</p>
