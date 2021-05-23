@@ -12,10 +12,8 @@ function App() {
     <div className="App">
       <GlobalStyles />
       <Nav />
-      <Route path={["/games/:id", "/"]}>
-        <Home />
-      </Route>
-      <Redirect to="/"></Redirect>
+      <Route path={["/games/:id", "/"]} component={Home} />
+      <Redirect to="/" />
     </div>
   );
 }
