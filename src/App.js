@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 // Styles
 import GlobalStyles from "./components/GlobalStyles";
 // Router
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Route path={["/games/:id", "/"]}>
         <Home />
       </Route>
+      <Redirect to="/"></Redirect>
     </div>
   );
 }
