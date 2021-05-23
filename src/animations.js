@@ -45,7 +45,7 @@ export const detailsAnimation = {
     show: {
         opacity: 1,
         transition: {
-            duration: 0.75
+            duration: 1
         }
 
     }
