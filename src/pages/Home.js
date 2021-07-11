@@ -103,6 +103,16 @@ const Games = styled(motion.div)`
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-column-gap: 3rem;
     grid-row-gap: 5rem;
+    @media screen and (max-width: 850px) {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        grid-row-gap: 2%;  
+        padding: 0.5rem;
+    }  
+    @media screen and (max-width: 450px) {
+        grid-template-columns: 99%;;
+        grid-row-gap: 2%;  
+        padding: 0.5rem;
+    }  
 `;
 
 export default Home;
