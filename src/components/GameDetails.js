@@ -2,7 +2,7 @@ import React from 'react';
 // Redux
 import { useSelector } from "react-redux";
 // Styles & Motion
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { motion } from "framer-motion";
 import { detailsAnimation } from "../animations";
 // Route
@@ -178,6 +178,9 @@ const StyledGameDetails = styled(motion.div)`
     img {
         width: 100%;
     }
+    @media screen and (max-width: 770px) {
+        padding: 1rem;
+    } 
 `;
 
 const StyledStats = styled(motion.div)`
@@ -188,6 +191,12 @@ const StyledStats = styled(motion.div)`
         width: 1.5rem;
         height: 1.5rem;
         display: inline;
+    }
+    @media screen and (max-width: 770px) {
+        img.star {
+        width: 1rem;
+        height: 1rem;
+        }
     }
 `;
 
@@ -201,6 +210,12 @@ const StyledPlatforms = styled(motion.div)`
     img {
         margin-left: 3rem;
     }
+    @media screen and (max-width: 770px) {
+        img{
+            width: 23px;
+            margin-left: 8px;
+        }
+    } 
 `;
 
 const StyledMedia = styled(motion.div)`

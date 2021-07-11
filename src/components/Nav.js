@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // Styles & Motion
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { motion } from "framer-motion";
 import { fadeIn } from "../animations";
 // Logo
@@ -63,6 +63,9 @@ const StyledNav = styled(motion.div)`
         color: white;
         border-radius: 0rem 1rem 1rem 0rem;
     }
+    @media screen and (max-width: 550px) {
+        padding: 0rem 1rem;
+    } 
 `;
 
 const StyledLogo = styled(motion.div)`

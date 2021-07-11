@@ -6,7 +6,7 @@ import { loadGames } from "../actions/gamesAction";
 import Game from "../components/Game";
 import GameDetails from "../components/GameDetails";
 // Styles & Motion
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { motion } from "framer-motion";
 import { fadeIn } from "../animations";
 // Router
@@ -95,6 +95,12 @@ const GameList = styled(motion.div)`
     h2 {
         padding: 5rem 0rem;
     }
+    @media screen and (max-width: 850px) {
+        padding: 0rem 1rem;
+        h2 {
+            padding: 1rem 0rem;
+        }
+    }  
 `;
 
 const Games = styled(motion.div)`
@@ -105,12 +111,11 @@ const Games = styled(motion.div)`
     grid-row-gap: 5rem;
     @media screen and (max-width: 850px) {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-        grid-row-gap: 2%;  
+        grid-row-gap: 20px;  
         padding: 0.5rem;
     }  
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 550px) {
         grid-template-columns: 99%;;
-        grid-row-gap: 2%;  
         padding: 0.5rem;
     }  
 `;

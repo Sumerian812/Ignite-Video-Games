@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components/macro";
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -29,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
         color: #333;
         padding: 1.5rem 0rem;
     }
+    } 
     p {
         font-size: 1.2rem;
         line-height: 200%;
@@ -44,6 +45,11 @@ const GlobalStyles = createGlobalStyle`
     input {
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
+    }
+    @media screen and (max-width: 550px) {
+        h3 {
+        font-size: 1rem;
+        padding: 1rem 0rem;
     }
 `;
 
